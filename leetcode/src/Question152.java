@@ -57,4 +57,19 @@ public class Question152 {
         }
         return max;
     }
+
+    /**
+     * DP解法
+     */
+    public int maxProductDp(int[] nums) {
+        int length = nums.length;
+        int max = nums[0],min = nums[0],res = max;
+        for (int i = 1; i < length; i++) {
+            int mx = max,mn = min,current = nums[i];
+            max = Math.max(mx * current,Math.max(current,current*mn));
+            min = Math.min(mx * current,Math.min(current,current*mn));
+            res = Math.max(max,res);
+        }
+        return res;
+    }
 }
