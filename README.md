@@ -1,2 +1,2 @@
-# algorithm-java
-java实现各种leetcode上的算法
+# algorithm
+C#实现各种leetcode上的算法
