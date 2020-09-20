@@ -1,28 +1,21 @@
-import com.alibaba.fastjson.JSON;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Question126 {
     public static void main(String[] args) throws Exception {
         Question126 q = new Question126();
-        String a = "nanny";
-        String b = "aloud";
-        String s = new String(Files.readAllBytes(Paths.get("D:\\project\\demo\\src\\main\\resources\\word.json"))) ;
-        List<String> wordList = JSON.parseArray(s, String.class);
 
-//        String a = "hot";
-//        String b = "dog";
-//        List<String> wordList = new ArrayList<>();
-//        wordList.add("hot");
-//        wordList.add("cog");
-//        wordList.add("dog");
-//        wordList.add("tot");
-//        wordList.add("hog");
-//        wordList.add("hop");
-//        wordList.add("pot");
-//        wordList.add("dot");
+
+        String a = "hot";
+        String b = "dog";
+        List<String> wordList = new ArrayList<>();
+        wordList.add("hot");
+        wordList.add("cog");
+        wordList.add("dog");
+        wordList.add("tot");
+        wordList.add("hog");
+        wordList.add("hop");
+        wordList.add("pot");
+        wordList.add("dot");
         long start = System.currentTimeMillis();
         System.out.println(q.findLadders(a, b, wordList));
         System.out.println(System.currentTimeMillis() - start + "ms");
