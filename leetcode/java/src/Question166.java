@@ -34,7 +34,7 @@ public class Question166 {
             }
             map.put(remainder, fraction.length());
             remainder *= 10;
-            fraction.append(String.valueOf(remainder / divisor));
+            fraction.append(remainder / divisor);
             remainder %= divisor;
         }
         return fraction.toString();
