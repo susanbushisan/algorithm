@@ -4,16 +4,17 @@ public class Question794 {
 
     public static void main(String[] args) {
         Question794 q794 = new Question794();
-        String[] strs = {
+        String[] board = {
                 "OXX",
                 "XOX",
                 "OXO"
         };
         long start = System.currentTimeMillis();
-        System.out.println(q794.validTicTacToe(strs));
+        System.out.println(q794.validTicTacToe(board));
         System.out.println(System.currentTimeMillis() - start + "ms");
 
     }
+
 
     public boolean validTicTacToe(String[] board) {
         int xCount = 0,oCount = 0;
@@ -70,8 +71,6 @@ public class Question794 {
             }
 
         }
-
-
         return true;
     }
 }

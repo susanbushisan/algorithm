@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Question143 {
     public static void main(String[] args) {
         Question143 q = new Question143();
-        ListNode head = new ListNode(1,2,3,4,5);
+        ListNode head =ListNodeUtils.creatListNode(1,2,3,4,5);
 
         long start = System.currentTimeMillis();
         q.reorderList(head);

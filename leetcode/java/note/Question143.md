@@ -2,6 +2,38 @@
 
 不过想做个暴力的看行不行
 
+### 方法一：大力出奇迹
+
+~~~
+    public void reorderList(ListNode head) {
+        if (head == null){
+            return;
+        }
+        Deque<ListNode> deque = new LinkedList<>();
+        ListNode var = head.next;
+        while (var != null){
+            deque.addLast(var);
+            var = var.next;
+        }
+
+
+        while (!deque.isEmpty()){
+            ListNode listNode = deque.pollLast();
+            head.next = listNode;
+            head = listNode;
+            if (!deque.isEmpty()){
+                listNode = deque.pollFirst();
+                head.next = listNode;
+                head = listNode;
+            }
+        }
+        head.next = null;
+    }
+
+
+
+~~~
+
 没想到过了，思路就是用双向队列将每一个节点保存起来，然后队头队尾依次出队被head链起来
 
 代码实现：src/Question143.java

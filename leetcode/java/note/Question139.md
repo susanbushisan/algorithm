@@ -22,6 +22,7 @@
 
 这个用例没通过，既然可能重复，看是只好上回溯法了，老规矩，递归和迭代都应该可以，但是我喜欢写递归
 
+
 然后递归超时了？？？
 
     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
@@ -34,6 +35,27 @@
 - 优化思路的其它解法
 
 目前情况对于第一种比较合适,将不能通过的数据存入到set中，如果再次出现就return false;
+
+
+### 方法一：回溯+缓存
+
+~~~
+    Set<String> set = new HashSet<>();
+    public boolean wordBreak(String s, List<String> wordDict) {
+        if (wordDict.contains(s)){
+            return true;
+        }
+        if(set.contains(s))
+            return false;
+        for (String word : wordDict) {
+            if (s.startsWith(word) && wordBreak(s.substring(word.length()),wordDict)){
+                return true;
+            }
+        }
+        set.add(s);
+        return false;
+    }
+~~~
 
 代码实现：src/Question139.java
 

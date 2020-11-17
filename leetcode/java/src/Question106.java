@@ -58,10 +58,10 @@ public class Question106 {
 
         int[] inorderLeft = Arrays.copyOf(inorder, i);
         int[] postorderLeft = Arrays.copyOf(postorder, i);
-        root.left = buildTree(inorderLeft, postorderLeft);
+        root.left = buildTreeSlow(inorderLeft, postorderLeft);
         int[] inorderRight = Arrays.copyOfRange(inorder, i + 1, inorder.length);
         int[] postorderRight = Arrays.copyOfRange(postorder, i, postorder.length - 1);
-        root.right = buildTree(inorderRight, postorderRight);
+        root.right = buildTreeSlow(inorderRight, postorderRight);
         return root;
     }
 

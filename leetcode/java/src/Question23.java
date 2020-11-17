@@ -7,9 +7,9 @@ public class Question23 {
     public static void main(String[] args) throws Exception {
         Question23 q = new Question23();
         ListNode[] lists = {
-                new ListNode(1, 4, 5,3,2,3,346,56,456,57,5,3463,56,35,6354,73,456,3),
-                new ListNode(1, 3, 4,245,25,2354,2,46,567,4,56,34,56,35,63,57,54,3,56,3456,65),
-                new ListNode(2, 6,65346,3547,7,345,3,5,46,546,345,6,35,7,73,456,345,634,5),
+                ListNodeUtils.creatListNode(1, 4, 5,3,2,3,346,56,456,57,5,3463,56,35,6354,73,456,3),
+                ListNodeUtils.creatListNode(1, 3, 4,245,25,2354,2,46,567,4,56,34,56,35,63,57,54,3,56,3456,65),
+                ListNodeUtils.creatListNode(2, 6,65346,3547,7,345,3,5,46,546,345,6,35,7,73,456,345,634,5),
         };
 
         long start = System.currentTimeMillis();
@@ -24,9 +24,9 @@ public class Question23 {
 
 
         ListNode[] listsT = {
-                new ListNode(1, 4, 5,3,2,3,346,56,456,57,5,3463,56,35,6354,73,456,3),
-                new ListNode(1, 3, 4,245,25,2354,2,46,567,4,56,34,56,35,63,57,54,3,56,3456,65),
-                new ListNode(2, 6,65346,3547,7,345,3,5,46,546,345,6,35,7,73,456,345,634,5),
+                ListNodeUtils.creatListNode(1, 4, 5,3,2,3,346,56,456,57,5,3463,56,35,6354,73,456,3),
+                ListNodeUtils.creatListNode(1, 3, 4,245,25,2354,2,46,567,4,56,34,56,35,63,57,54,3,56,3456,65),
+                ListNodeUtils.creatListNode(2, 6,65346,3547,7,345,3,5,46,546,345,6,35,7,73,456,345,634,5),
         };
         start = System.currentTimeMillis();
         System.out.println("\n方法三：");
@@ -35,7 +35,7 @@ public class Question23 {
     }
 
     private ListNode mergeKListsRight(ListNode[] lists) {
-        Queue<ListNode> pq = new PriorityQueue<>((v1, v2) -> v1.val - v2.val);
+        Queue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(v -> v.val));
         for (ListNode node: lists) {
             if (node != null) {
                 pq.offer(node);

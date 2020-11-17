@@ -7,11 +7,12 @@ import java.util.Stack;
  */
 public class Question1008 {
     public static void main(String[] args) {
-        int[] preorder = new int[] { 8, 5, 1, 7, 10, 12 };
+//        int[] preorder = new int[] { 8, 5, 1, 7, 10, 12 };
+        int[] preorder = new int[] { 4,2};
 
         Question1008 q = new Question1008();
         long start = System.currentTimeMillis();
-        TreeNode treeNode = q.bstFromPreorder(preorder);
+        TreeNode treeNode = q.bstFromPreorderN(preorder);
         System.out.println(System.currentTimeMillis() - start + "ms");
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -27,6 +28,24 @@ public class Question1008 {
             }
         }
 
+    }
+
+    public TreeNode bstFromPreorderN(int[] preorder) {
+        return helper(preorder,0,preorder.length);
+    }
+
+    private TreeNode helper(int[] preorder,int start,int end){
+        if (start == end) return null;
+        TreeNode node = new TreeNode(preorder[start]);
+        for (int i = start + 1; i < end; i++) {
+            if (preorder[i] > preorder[start]){
+                node.left = helper(preorder,start + 1, i);
+                node.right = helper(preorder,i, end);
+                return node;
+            }
+        }
+        node.left = helper(preorder,start + 1, end);
+        return node;
     }
 
     public TreeNode buildTree(int[] pre, int[] ord) {

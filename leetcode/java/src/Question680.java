@@ -9,8 +9,9 @@ public class Question680 {
         System.out.println(q.validPalindrome("abc"));
     }
 
-    int deleteCount = 1;
+
     public boolean validPalindrome(String s) {
+        int deleteCount = 1;
         int low = 0 ,high = s.length() - 1;
         while (low != high &&low != high + 1){
             if (s.charAt(low) == s.charAt(high)){

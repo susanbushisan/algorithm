@@ -6,7 +6,7 @@ public class Question109 {
 
     public static void main(String[] args) {
         Question109 q164 = new Question109();
-        ListNode root = new ListNode(-10, -3, 0, 5, 9);
+        ListNode root = ListNodeUtils.creatListNode(-10, -3, 0, 5, 9);
         long start = System.currentTimeMillis();
         System.out.println(q164.sortedListToBST(root));
         System.out.println(System.currentTimeMillis() - start + "ms");

@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Question135 {
     public static void main(String[] args) {
         Question135 q = new Question135();

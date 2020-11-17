@@ -6,26 +6,15 @@ import java.util.Set;
 public class Question142 {
     public static void main(String[] args) {
         Question142 q = new Question142();
-        ListNode head = new ListNode(4,2,1,3);
-        int pos = -1;
-        ListNode temp = head;
-        ListNode circle = null;
-        int count = 0;
-        while (true){
-            if (count == pos){
-                circle = temp;
-            }
-            if (temp.next == null){
-                temp.next = circle;
-                break;
-            }
-            count++;
-            temp = temp.next;
-        }
-
+        ListNode head = ListNodeUtils.creatListNode(4,2,1,3);
+        int pos = 2;
+        ListNodeUtils.circleListNode(head,pos);
+        System.out.println("original:");
+        ListNodeUtils.printListNode(head);
+        System.out.println();
         long start = System.currentTimeMillis();
-        System.out.println(q.detectCycle(head).val);
-        System.out.println(q.detectCycleTerrible(head).val);
+        ListNodeUtils.printCircleListNode(q.detectCycle(head));
+        ListNodeUtils.printCircleListNode(q.detectCycleTerrible(head));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 

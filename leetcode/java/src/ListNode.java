@@ -1,4 +1,5 @@
-
+import java.util.HashSet;
+import java.util.Set;
 
 public class ListNode {
     public int val;
@@ -8,21 +9,17 @@ public class ListNode {
         val = x;
     }
 
-    public ListNode(int... x) {
-        val = x[0];
-        next = new ListNode(x[1]);
-        ListNode listNode = next;
-        for (int i = 2; i < x.length; i++) {
-            listNode.next = new ListNode(x[i]);
-            listNode = listNode.next;
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder r = new StringBuilder(String.valueOf(val));
         ListNode temp = next;
+        Set<ListNode> contain = new HashSet<>();
         while (temp != null){
+            if (contain.contains(temp)){
+                r.append(" -> link after ").append(temp.val);
+                break;
+            }
+            contain.add(temp);
             r.append(" -> ").append(temp.val);
             temp = temp.next;
         }

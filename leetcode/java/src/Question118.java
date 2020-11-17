@@ -8,7 +8,7 @@ public class Question118 {
     public static void main(String[] args) {
         Question118 q = new Question118();
         long start = System.currentTimeMillis();
-        System.out.println(q.generate(5));
+        q.generate(5).forEach(System.out::println);
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 

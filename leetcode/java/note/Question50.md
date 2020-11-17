@@ -2,6 +2,26 @@
 3部分大于0等于0小于0，等于0永远返回1，如果一个数幂的绝对值相等符号相反，那结果互为倒数。那就算起来，跑了下test case，发现超时，暴力方法很尴尬
 
 在答案我学到了分治法。中间被最小int坑了一下，因为*-1还是它本身，那就把n用long类型处理
+~~~
+    public double myPow(double x, int n) {
+        long N = n;
+        if (N == 0) return 1;
+        boolean behindZero = true;
+        if (N < 0) {
+            behindZero = false;
+            N = -N;
+        }
+        double ans = 1;
+        while (N > 0) {
+            if (N % 2 == 1) {
+                ans *= x;
+            }
+            x *= x;
+            N = N << 1;
+        }
+        return behindZero ? ans : 1 / ans;
+    }
+~~~
 
 代码实现：src/Question50,java
 

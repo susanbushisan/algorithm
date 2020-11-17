@@ -11,18 +11,16 @@ public class Question12 {
         int[] numArr = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
         String[] strArr = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
         int i = 0;
-        StringBuilder result = new StringBuilder();
-        while(true){
-            int temp = numArr[i];
-            while(temp <= num) {
-                num = num - temp;
-                result.append(strArr[i]);
+        StringBuilder sb = new StringBuilder();
+        while (num != 0){
+            int n = numArr[i];
+            while (num >= n){
+                sb.append(strArr[i]);
+                num -= n;
             }
-            if(num == 0){
-                break;
-            }
-            i++;
+
+            i ++;
         }
-        return result.toString();
+        return sb.toString();
     }
 }

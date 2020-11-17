@@ -17,7 +17,7 @@ public class Question74 {
                 {23, 30, 34, 50}
         };
         long start = System.currentTimeMillis();
-        System.out.println(q.searchMatrix(grid, 3));
+        System.out.println(q.searchMatrixR(grid, 3));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
@@ -33,5 +33,28 @@ public class Question74 {
             System.arraycopy(matrix[n], 0, array, n * matrix[n].length, matrix[n].length);
         }
         return Arrays.binarySearch(array, target) >= 0;
+    }
+
+    public boolean searchMatrixR(int[][] matrix, int target) {
+
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+
+        int left = 0, right = matrix.length * matrix[0].length - 1;
+
+        while (left <= right){
+            int mid = (left + right) / 2;
+            int midVal = matrix[(mid/matrix[0].length)][(mid%matrix[0].length)];
+            if (midVal == target){
+                return true;
+            }
+            if (midVal < target){
+                left = mid + 1;
+            }else {
+                right = mid - 1;
+            }
+        }
+        return false;
     }
 }

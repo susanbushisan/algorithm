@@ -3,7 +3,7 @@
 public class Question147 {
     public static void main(String[] args) {
         Question147 q = new Question147();
-        ListNode head = new ListNode(4,2,1,3);
+        ListNode head = ListNodeUtils.creatListNode(4,2,1,3);
 
         long start = System.currentTimeMillis();
         System.out.println(q.insertionSortList(head));

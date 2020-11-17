@@ -1,6 +1,33 @@
 这题一看就挺花时间的，因为要判断位置不同字符相同的str。
 
 那么可以排序字符生成排序字符串，并以它做key，如果没出息在map中就添加一个list，如果存在就在list中add原字符串
+### 方法一：排序字符串
+
+~~~
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        Map<String,List<String>> center = new HashMap<>();
+
+        for (String str : strs) {
+            String dictStr = transDictString(str);
+            if (center.get(dictStr) == null){
+                List<String> hashSet = new ArrayList<>();
+                hashSet.add(str);
+                center.put(dictStr,hashSet);
+            }else {
+                center.get(dictStr).add(str);
+            }
+        }
+
+        return new ArrayList<>(center.values());
+    }
+
+    private String transDictString(String str){
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+~~~
 
 代码实现：src/Question49.java
 

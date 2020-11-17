@@ -9,7 +9,7 @@ public class Question51 {
     public static void main(String[] args) {
         Question51 q51 = new Question51();
         long start = System.currentTimeMillis();
-        System.out.println(q51.solveNQueens(4));
+        System.out.println(q51.solveNQueensBacktracking(4));
         System.out.println(System.currentTimeMillis() - start);
     }
 
@@ -63,5 +63,41 @@ public class Question51 {
             }
         }
         return clone;
+    }
+
+    public List<List<String>> solveNQueensBacktracking(int n) {
+        int[] map = new int[n];
+        List<List<String>> result = new ArrayList<>();
+        deepSearch(map,0,result);
+
+        return result;
+    }
+
+    private void deepSearch(int[] map, int deep, List<List<String>> result) {
+        if (deep == map.length){
+            List<String> temp = new ArrayList<>();
+            for (int j = 0; j < map.length; j++) {
+                StringBuilder sb = new StringBuilder();
+                for (int k = 0; k < map.length; k++) {
+                    sb.append(map[j] == k?"Q":".");
+                }
+                temp.add(sb.toString());
+            }
+            result.add(temp);
+            return;
+        }
+        for (int i = 0; i < map.length; i++) {
+            boolean canFill = true;
+            for (int j = 0; j < deep; j++) {
+                if (map[j] == i || map[j] + deep - j == i || map[j] - deep + j == i) {
+                    canFill = false;
+                    break;
+                }
+            }
+            if (canFill){
+                map[deep] = i;
+                deepSearch(map, deep + 1, result);
+            }
+        }
     }
 }

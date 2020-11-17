@@ -8,9 +8,9 @@ public class Question44 {
 
     public static void main(String[] args) {
         Question44 q = new Question44();
-        String s = "", p = "ab*";
+        String s = "abcedced", p = "ab*c?d";
         long start = System.currentTimeMillis();
-        System.out.println(q.isMatchEasy(s, p));
+        System.out.println(q.isMatch(s, p));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 

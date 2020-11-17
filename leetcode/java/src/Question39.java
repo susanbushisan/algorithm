@@ -27,8 +27,8 @@ public class Question39 {
             if (candidate == target) {
                 ans.add(new ArrayList<>(stack));
             } else if (candidate < target) {
-                int[] arr =  new int[candidates.length - i];
-                System.arraycopy(candidates,i,arr,0,arr.length);
+                int[] arr = new int[candidates.length - i];
+                System.arraycopy(candidates, i, arr, 0, arr.length);
                 helper(arr, target - candidate, stack, ans);
             }
             stack.pop();

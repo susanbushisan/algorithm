@@ -8,7 +8,7 @@ public class Question17 {
     public static void main(String[] args) {
         Question17 question17 = new Question17();
         long start = System.currentTimeMillis();
-        System.out.println(question17.letterCombinations(""));
+        System.out.println(question17.letterCombinations("234"));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
@@ -38,5 +38,31 @@ public class Question17 {
             res.add(new String(index));
         }
         return res;
+    }
+
+    public List<String> letterCombinationsBacktracking(String digits) {
+        if (digits.length() == 0){
+            return new ArrayList<>();
+        }
+        String[] dict = {
+                "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
+        };
+        List<String> res = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        helper(digits,0,dict,sb,res);
+        return res;
+    }
+
+    private void helper(String digits,int index,String[] dict,StringBuilder sb,List<String> res){
+        if (index == digits.length()){
+            res.add(sb.toString());
+            return;
+        }
+        String op = dict[digits.charAt(index) - 50];
+        for (int i = 0; i < op.length(); i++) {
+            sb.append(op.charAt(i));
+            helper(digits, index + 1, dict, sb, res);
+            sb.deleteCharAt(index);
+        }
     }
 }
