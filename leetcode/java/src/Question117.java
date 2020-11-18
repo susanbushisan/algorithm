@@ -1,5 +1,7 @@
 
 
+import struct.Node;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

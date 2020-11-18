@@ -1,3 +1,5 @@
+import struct.TreeNode;
+
 /**
  * Question114
  */

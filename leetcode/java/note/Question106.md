@@ -5,12 +5,12 @@
 通过后序遍历的最后一个值可以得到树的root节点，然后更具中序确定左子树和右子树，然后递归调用自己
 
 ~~~
-    public TreeNode buildTreeSlow(int[] inorder, int[] postorder) {
+    public struct.TreeNode buildTreeSlow(int[] inorder, int[] postorder) {
         if (postorder.length == 0) {
             return null;
         }
         int val = postorder[postorder.length - 1];
-        TreeNode root = new TreeNode(val);
+        struct.TreeNode root = new struct.TreeNode(val);
         int i = 0;
         for (; i < inorder.length; i++) {
             if (inorder[i] == val) {
@@ -35,26 +35,26 @@
 - 无论是哪一种情况，我们最后都将当前的节点入栈。
 
 ~~~
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
+    public struct.TreeNode buildTree(int[] inorder, int[] postorder) {
         if (postorder == null || postorder.length == 0) {
             return null;
         }
-        TreeNode root = new TreeNode(postorder[postorder.length - 1]);
-        Deque<TreeNode> stack = new LinkedList<>();
+        struct.TreeNode root = new struct.TreeNode(postorder[postorder.length - 1]);
+        Deque<struct.TreeNode> stack = new LinkedList<>();
         stack.push(root);
         int inorderIndex = inorder.length - 1;
         for (int i = postorder.length - 2; i >= 0; i--) {
             int postorderVal = postorder[i];
-            TreeNode node = stack.peek();
+            struct.TreeNode node = stack.peek();
             if (node.val != inorder[inorderIndex]) {
-                node.right = new TreeNode(postorderVal);
+                node.right = new struct.TreeNode(postorderVal);
                 stack.push(node.right);
             } else {
                 while (!stack.isEmpty() && stack.peek().val == inorder[inorderIndex]) {
                     node = stack.pop();
                     inorderIndex--;
                 }
-                node.left = new TreeNode(postorderVal);
+                node.left = new struct.TreeNode(postorderVal);
                 stack.push(node.left);
             }
         }

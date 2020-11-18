@@ -7,17 +7,17 @@
 使用一个队列记录每个深度的全部元素
 
 ~~~
-   public Node connect(Node root) {
+   public struct.Node connect(struct.Node root) {
         if (root == null) {
             return null;
         }
 
-        Queue<Node> Q = new LinkedList<>();
+        Queue<struct.Node> Q = new LinkedList<>();
         Q.add(root);
         while (Q.size() > 0) {
             int size = Q.size();
             for(int i = 0; i < size; i++) {
-                Node node = Q.poll();
+                struct.Node node = Q.poll();
                 if (i < size - 1) {
                     node.next = Q.peek();
                 }

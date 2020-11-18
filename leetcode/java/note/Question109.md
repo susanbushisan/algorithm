@@ -5,7 +5,7 @@
 ### 方法一：中心构建（递归）
 
 ~~~
- public TreeNode sortedListToBST(ListNode head) {
+ public struct.TreeNode sortedListToBST(struct.ListNode head) {
         List<Integer> list = new ArrayList<>();
         while (head!= null){
             list.add(head.val);
@@ -15,16 +15,16 @@
         for (int i = 0; i < arr.length; i++) {
             arr[i] = list.get(i);
         }
-        TreeNode treeNode = toBST(arr);
+        struct.TreeNode treeNode = toBST(arr);
         return treeNode;
     }
 
-    private TreeNode toBST(int[] arr) {
+    private struct.TreeNode toBST(int[] arr) {
         if (arr.length == 0){
             return null;
         }
         int center = arr.length / 2 + 1;
-        TreeNode top = new TreeNode(arr[center - 1]);
+        struct.TreeNode top = new struct.TreeNode(arr[center - 1]);
         if (center != 1) {
             top.left = toBST(Arrays.copyOfRange(arr, 0, center - 1));
             top.right = toBST(Arrays.copyOfRange(arr, center, arr.length));

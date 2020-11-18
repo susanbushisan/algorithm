@@ -5,12 +5,12 @@
 ### 方法一：大力出奇迹
 
 ~~~
-    public void reorderList(ListNode head) {
+    public void reorderList(struct.ListNode head) {
         if (head == null){
             return;
         }
-        Deque<ListNode> deque = new LinkedList<>();
-        ListNode var = head.next;
+        Deque<struct.ListNode> deque = new LinkedList<>();
+        struct.ListNode var = head.next;
         while (var != null){
             deque.addLast(var);
             var = var.next;
@@ -18,7 +18,7 @@
 
 
         while (!deque.isEmpty()){
-            ListNode listNode = deque.pollLast();
+            struct.ListNode listNode = deque.pollLast();
             head.next = listNode;
             head = listNode;
             if (!deque.isEmpty()){

@@ -9,7 +9,7 @@
 ~~~
 while (t1!=null || t2!= null || step){
     temp = t1 + t2 + step
-    tNode.next = new ListNode(temp);
+    tNode.next = new struct.ListNode(temp);
 }
 ~~~
 
@@ -42,14 +42,14 @@ int n2 = Integer.parseInt(stringBuilder.reverse().toString());
 int res = n1 + n2;
 
 if (res == 0){
-    return new ListNode(0);
+    return new struct.ListNode(0);
 }
 
-ListNode result = new ListNode(-1) ;
-ListNode temp = result;
+struct.ListNode result = new struct.ListNode(-1) ;
+struct.ListNode temp = result;
 
 do {
-    temp.next = new ListNode( res%10);
+    temp.next = new struct.ListNode( res%10);
     temp = temp.next;
     res /= 10;
 }while (res > 0);
@@ -64,26 +64,26 @@ return result.next;
 在方法一的基础上如果出现了链表长度相差悬殊，可能造成空间的浪费，当摸个位置只有一条链表能到达并且进位为0时，将能达到的链表链在result后面即可
 
 ~~~
-ListNode result = new ListNode((l1.val + l2.val) % 10);
-ListNode re = result;
+struct.ListNode result = new struct.ListNode((l1.val + l2.val) % 10);
+struct.ListNode re = result;
 int carry = (l1.val + l2.val) >= 10 ? 1 : 0;
 while (l1.next != null && l2.next != null) {
     l1 = l1.next;
     l2 = l2.next;
     int sum = l1.val + l2.val + carry;
     if (sum >= 10) {
-        result.next = new ListNode(sum - 10);
+        result.next = new struct.ListNode(sum - 10);
         result = result.next;
         carry = 1;
     } else {
-        result.next = new ListNode(sum);
+        result.next = new struct.ListNode(sum);
         result = result.next;
         carry = 0;
     }
 }
 if (l1.next == null && l2.next == null) {
     if (carry == 1) {
-        result.next = new ListNode(1);
+        result.next = new struct.ListNode(1);
     }
     return re;
 } else if (l1.next == null) {
@@ -91,17 +91,17 @@ if (l1.next == null && l2.next == null) {
         l2 = l2.next;
         int sum = l2.val + carry;
         if (sum >= 10) {
-            result.next = new ListNode(sum - 10);
+            result.next = new struct.ListNode(sum - 10);
             result = result.next;
             carry = 1;
         } else {
-            result.next = new ListNode(sum);
+            result.next = new struct.ListNode(sum);
             result = result.next;
             carry = 0;
         }
     }
     if (carry == 1) {
-        result.next = new ListNode(1);
+        result.next = new struct.ListNode(1);
     }
     return re;
 } else {
@@ -109,17 +109,17 @@ if (l1.next == null && l2.next == null) {
         l1 = l1.next;
         int sum = l1.val + carry;
         if (sum >= 10) {
-            result.next = new ListNode(sum - 10);
+            result.next = new struct.ListNode(sum - 10);
             result = result.next;
             carry = 1;
         } else {
-            result.next = new ListNode(sum);
+            result.next = new struct.ListNode(sum);
             result = result.next;
             carry = 0;
         }
     }
     if (carry == 1) {
-        result.next = new ListNode(1);
+        result.next = new struct.ListNode(1);
     }
     return re;
 }

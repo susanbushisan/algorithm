@@ -4,18 +4,18 @@
 ### 方法一：层序遍历
 
 ~~~
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrder(struct.TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null){
             return ans;
         }
-        Queue<TreeNode> queue= new LinkedList<>();
+        Queue<struct.TreeNode> queue= new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()){
             int size = queue.size();
             List<Integer> current = new LinkedList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
+                struct.TreeNode poll = queue.poll();
                 assert poll != null;
                 current.add(poll.val);
                 if (poll.left != null){

@@ -9,11 +9,11 @@
         List<Integer> mOrder = new ArrayList<>();
         int index = 0;
 
-        public BSTIterator(TreeNode root) {
+        public BSTIterator(struct.TreeNode root) {
             order(root);
         }
 
-        private void order(TreeNode root){
+        private void order(struct.TreeNode root){
             if (root == null) {
                 return;
             }

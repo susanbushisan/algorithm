@@ -1,7 +1,7 @@
 ### 方法一：深度优先遍历
 
 ~~~
-    public List<Double> averageOfLevels(TreeNode root) {
+    public List<Double> averageOfLevels(struct.TreeNode root) {
         Map<Integer, List<Integer>> process = new TreeMap<>();
         List<Double> result = new ArrayList<>();
         findChildLevel(root, 0,process);
@@ -10,7 +10,7 @@
         return result;
     }
 
-    private void findChildLevel(TreeNode root, int i,Map<Integer, List<Integer>> process) {
+    private void findChildLevel(struct.TreeNode root, int i,Map<Integer, List<Integer>> process) {
         if (root != null) {
             if (process.get(i) == null) {
                 List<Integer> list = new LinkedList<>();
@@ -34,15 +34,15 @@
 ### 方法二：栈
 
 ~~~
-    public List<Double> averageOfLevelsT(TreeNode root) {
+    public List<Double> averageOfLevelsT(struct.TreeNode root) {
         List<Double> result = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<struct.TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()){
             double sum = 0.0;
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
+                struct.TreeNode poll = queue.poll();
                 sum += poll.val;
                 if (poll.left != null){
                     queue.offer(poll.left);

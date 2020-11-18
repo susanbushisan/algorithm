@@ -1,4 +1,6 @@
 
+import struct.TreeNode;
+
 import java.util.*;
 
 /**
@@ -6,11 +8,11 @@ import java.util.*;
  */
 public class Question637 {
     public static void main(String[] args) {
-//        TreeNode root = new TreeNode(3);
-//        root.left = new TreeNode(9);
-//        root.right = new TreeNode(20);
-//        root.right.left = new TreeNode(15);
-//        root.right.right = new TreeNode(7);
+//        struct.TreeNode root = new struct.TreeNode(3);
+//        root.left = new struct.TreeNode(9);
+//        root.right = new struct.TreeNode(20);
+//        root.right.left = new struct.TreeNode(15);
+//        root.right.right = new struct.TreeNode(7);
         Question637 q637 = new Question637();
         TreeNode root = new TreeNode(5);
         root.left = new TreeNode(2);

@@ -5,7 +5,7 @@
 ### 方法一：递归
 
 ~~~
-    public boolean hasPathSum(TreeNode root, int sum) {
+    public boolean hasPathSum(struct.TreeNode root, int sum) {
         if (root == null) {
             return false;
         }

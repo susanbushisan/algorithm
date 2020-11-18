@@ -4,10 +4,10 @@
 ### 方法一：原地算法
 
 ~~~
-    public void flatten(TreeNode root) {
+    public void flatten(struct.TreeNode root) {
         while (root != null){
             if (root.left != null){
-                TreeNode temp = root.left;
+                struct.TreeNode temp = root.left;
                 while (temp.right != null){
                     temp = temp.right;
                 }

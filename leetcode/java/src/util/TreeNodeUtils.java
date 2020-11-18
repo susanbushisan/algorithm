@@ -1,3 +1,7 @@
+package util;
+
+import struct.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,9 +139,9 @@ final public class TreeNodeUtils {
         for (TreeLine line : lines) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < line.tab; i++) {
-                if (i != line.tab -1 ){
+                if (i != line.tab - 1) {
                     sb.append('\t');
-                }else {
+                } else {
                     sb.append("└───");
                 }
 
@@ -156,7 +160,7 @@ final public class TreeNodeUtils {
         as(ans, node.right, floor + 1);
     }
 
-    static class TreeLine {
+    private final static class TreeLine {
         int tab;
         int val;
 
@@ -168,7 +172,7 @@ final public class TreeNodeUtils {
 
 
     public static void main(String[] args) {
-        TreeNode treeNode = creatConventionalTreeNode(3,9,20,2,3,15,7,4);
+        TreeNode treeNode = creatConventionalTreeNode(3, 9, 20, 2, 3, 15, 7, 4);
         printPreorder(treeNode);
         printInorder(treeNode);
         printPostorder(treeNode);

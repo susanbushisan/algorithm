@@ -1,4 +1,4 @@
-
+import struct.TreeNode;
 
 /**
  * 判断两个二叉树是否相同

@@ -5,7 +5,7 @@
 ### 方法一：递归
 
 ~~~
-    public boolean isSameTree(TreeNode p, TreeNode q) {
+    public boolean isSameTree(struct.TreeNode p, struct.TreeNode q) {
         if (p == null || q == null){
             return p == q;
         }

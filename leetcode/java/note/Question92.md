@@ -5,9 +5,9 @@
 ### 方法一：分段讨论
 
 ~~~
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode d = new ListNode(0) , mEl = null, mElP = null, nEl = null;
-        ListNode temp = d;
+    public struct.ListNode reverseBetween(struct.ListNode head, int m, int n) {
+        struct.ListNode d = new struct.ListNode(0) , mEl = null, mElP = null, nEl = null;
+        struct.ListNode temp = d;
         temp.next = head;
         if (m == n){
             return  d.next;
@@ -27,13 +27,13 @@
                 temp = temp.next;
                 index ++;
             }else if (index < n ){
-                ListNode next = temp.next;
+                struct.ListNode next = temp.next;
                 temp.next = mEl;
                 mEl = temp;
                 temp = next;
                 index ++;
             }else {
-                ListNode next = temp.next;
+                struct.ListNode next = temp.next;
                 temp.next = mEl;
                 mElP.next = temp;
                 nEl.next = next;

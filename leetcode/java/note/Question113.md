@@ -8,13 +8,13 @@
 ### 方法一：回溯
 
 ~~~
-    public List<List<Integer>> pathSum2(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum2(struct.TreeNode root, int sum) {
         List<List<Integer>> paths=new ArrayList<List<Integer>>();
         go(root,0,sum,new ArrayList<Integer>(),paths);
         return paths;
     }
 
-    private void go(TreeNode node,int sum,int target,ArrayList<Integer> path,List<List<Integer>> paths){
+    private void go(struct.TreeNode node,int sum,int target,ArrayList<Integer> path,List<List<Integer>> paths){
         if(node==null)return;
         sum+=node.val;
         path.add(node.val);

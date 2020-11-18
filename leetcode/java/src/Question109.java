@@ -1,3 +1,7 @@
+import struct.ListNode;
+import util.ListNodeUtils;
+import struct.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

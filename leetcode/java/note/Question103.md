@@ -3,19 +3,19 @@
 ### 方法一：左右层序遍历
 
 ~~~
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    public List<List<Integer>> zigzagLevelOrder(struct.TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) {
             return ans;
         }
-        Deque<TreeNode> deque = new LinkedList<>();
+        Deque<struct.TreeNode> deque = new LinkedList<>();
         deque.addFirst(root);
         boolean direction = true;
         while (deque.size() > 0) {
             int size = deque.size();
             List<Integer> temp = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode treeNode = direction ? deque.pollLast() : deque.pollFirst();
+                struct.TreeNode treeNode = direction ? deque.pollLast() : deque.pollFirst();
                 temp.add(treeNode.val);
                 if (direction) {
                     if (treeNode.left != null) {

@@ -1,9 +1,15 @@
+package struct;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class ListNode {
     public int val;
     public ListNode next;
+
+    public ListNode() {
+
+    }
 
     public ListNode(int x) {
         val = x;

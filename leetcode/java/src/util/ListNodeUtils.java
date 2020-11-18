@@ -1,3 +1,7 @@
+package util;
+
+import struct.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 

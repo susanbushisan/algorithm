@@ -8,9 +8,9 @@
     /**
      * 通过Set，找到重复的节点为答案
      */
-    public ListNode detectCycleTerrible(ListNode head) {
-        Set<ListNode> context = new HashSet<ListNode>();
-        ListNode temp = head;
+    public struct.ListNode detectCycleTerrible(struct.ListNode head) {
+        Set<struct.ListNode> context = new HashSet<struct.ListNode>();
+        struct.ListNode temp = head;
         while(temp != null){
             if(context.contains(temp)){
                 return temp;
@@ -30,8 +30,8 @@
     /**
      * 快慢指针，可以通过数据证明
      */
-    public ListNode detectCycle(ListNode head) {
-        ListNode fast = head,slow = head;
+    public struct.ListNode detectCycle(struct.ListNode head) {
+        struct.ListNode fast = head,slow = head;
         try {
             do{
                 fast = fast.next.next;

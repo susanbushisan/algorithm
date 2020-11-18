@@ -1,4 +1,4 @@
-
+import struct.ListNode;
 
 /**
  * 最大连续乘积

@@ -18,9 +18,9 @@
 
 ~~~ java
 publc class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(struct.TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
-        TreeNode predecessor = null;
+        struct.TreeNode predecessor = null;
 
         while (root != null) {
             if (root.left != null) {

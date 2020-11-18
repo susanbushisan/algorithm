@@ -5,25 +5,25 @@
 ### 方法一：归并排序
 
 ~~~
-    public ListNode insertionSortList(ListNode head) {
+    public struct.ListNode insertionSortList(struct.ListNode head) {
         if(head == null||head.next==null){
             return head;
         }
 
-        ListNode fast = head;
-        ListNode slow = head;
+        struct.ListNode fast = head;
+        struct.ListNode slow = head;
         while (fast.next != null && fast.next.next != null){
             slow = slow.next;
             fast = fast.next.next;
         }
-        ListNode breakPoint = slow.next;
+        struct.ListNode breakPoint = slow.next;
         slow.next = null;
-        ListNode left = insertionSortList(head);
-        ListNode right = insertionSortList(breakPoint);
+        struct.ListNode left = insertionSortList(head);
+        struct.ListNode right = insertionSortList(breakPoint);
         return sort(left,right);
     }
 
-    private ListNode sort(ListNode left,ListNode right){
+    private struct.ListNode sort(struct.ListNode left,struct.ListNode right){
         if (left == null){
             return right;
         }else if (right == null){
