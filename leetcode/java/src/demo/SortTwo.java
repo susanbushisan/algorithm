@@ -95,7 +95,7 @@ public class SortTwo {
 
         clone = arr.clone();
         quickSort(clone);
-        System.out.println("after insertion sort :" + Arrays.toString(clone));
+        System.out.println("after quick sort :" + Arrays.toString(clone));
 
 
     }

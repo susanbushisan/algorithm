@@ -82,10 +82,10 @@ public class SortThree {
 
         clone = arr.clone();
         countingSort(clone);
-        System.out.println("after insertion sort :" + Arrays.toString(clone));
+        System.out.println("after counting sort :" + Arrays.toString(clone));
 
         clone = arr.clone();
         radixSort(clone);
-        System.out.println("after selection sort :" + Arrays.toString(clone));
+        System.out.println("after radix sort :" + Arrays.toString(clone));
     }
 }
