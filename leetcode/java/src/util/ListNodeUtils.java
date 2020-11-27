@@ -18,7 +18,7 @@ final public class ListNodeUtils {
         ListNode listNode = head;
         for (int i = 1; i < x.length; i++) {
             listNode.next = new ListNode(x[i]);
-            listNode = listNode.next;
+            listNode = listNode.getNext();
         }
 
         return head;
@@ -36,8 +36,8 @@ final public class ListNodeUtils {
         }
         int cp = 0;
         ListNode temp = null;
-        while (root.next != null) {
-            root = root.next;
+        while (root.getNext() != null) {
+            root = root.getNext();
             if (position == ++cp) {
                 temp = root;
             }
@@ -81,8 +81,8 @@ final public class ListNodeUtils {
             if (temp != head) {
                 r.append(delimiter);
             }
-            r.append(temp.val);
-            temp = temp.next;
+            r.append(temp.getVal());
+            temp = temp.getNext();
         }
         System.out.println(r);
     }
@@ -124,8 +124,8 @@ final public class ListNodeUtils {
             if (temp != head) {
                 r.append(delimiter);
             }
-            r.append(temp.val);
-            temp = temp.next;
+            r.append(temp.getVal());
+            temp = temp.getNext();
             index++;
         }
         System.out.println(r);
@@ -134,17 +134,17 @@ final public class ListNodeUtils {
     private static ListNode findCircle(ListNode head) {
         ListNode slow = head, fast = head;
         while (fast != null) {
-            slow = slow.next;
-            if (fast.next != null) {
-                fast = fast.next.next;
+            slow = slow.getNext();
+            if (fast.getNext() != null) {
+                fast = fast.getNext().getNext();
             } else {
                 return null;
             }
             if (fast == slow) {
                 ListNode ptr = head;
                 while (ptr != slow) {
-                    ptr = ptr.next;
-                    slow = slow.next;
+                    ptr = ptr.getNext();
+                    slow = slow.getNext();
                 }
                 return ptr;
             }

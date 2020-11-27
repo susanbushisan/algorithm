@@ -1,5 +1,6 @@
 package demo;
 
+import struct.DoubleListNode;
 import struct.ListNode;
 import util.ListNodeUtils;
 

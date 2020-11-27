@@ -15,19 +15,28 @@ public class ListNode {
         val = x;
     }
 
+    public int getVal() {
+        return val;
+    }
+
+    public ListNode getNext() {
+        return next;
+    }
+
+
     @Override
     public String toString() {
-        StringBuilder r = new StringBuilder(String.valueOf(val));
-        ListNode temp = next;
+        StringBuilder r = new StringBuilder(String.valueOf(getVal()));
+        ListNode temp = getNext();
         Set<ListNode> contain = new HashSet<>();
         while (temp != null){
             if (contain.contains(temp)){
-                r.append(" -> link after ").append(temp.val);
+                r.append(" -> link after ").append(temp.getVal());
                 break;
             }
             contain.add(temp);
-            r.append(" -> ").append(temp.val);
-            temp = temp.next;
+            r.append(" -> ").append(temp.getVal());
+            temp = temp.getNext();
         }
         return r.toString();
     }
