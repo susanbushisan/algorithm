@@ -44,50 +44,62 @@
 ### 方法二：单调栈
 
 ~~~
-int m = matrix.length;
-        if (m == 0) {
+    public int maximalRectangleSingleStack(char[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) {
             return 0;
         }
-        int n = matrix[0].length;
-        int[][] left = new int[m][n];
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == '1') {
-                    left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
+        //从上至下连续的1的个数
+        int[][] help = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == 0) {
+                    help[0][j] = matrix[0][j] - '0';
+                } else {
+                    help[i][j] = matrix[i][j] == '1' ? help[i - 1][j] + 1 : 0;
                 }
             }
         }
+        int res = 0;
+        for (int i = 0; i < help.length; i++) {
+            int[] h = help[i];
 
-        int ret = 0;
-        for (int j = 0; j < n; j++) { // 对于每一列，使用基于柱状图的方法
-            int[] up = new int[m];
-            int[] down = new int[m];
+            Deque<Integer> stack = new ArrayDeque<>();
 
-            Deque<Integer> stack = new LinkedList<Integer>();
-            for (int i = 0; i < m; i++) {
-                while (!stack.isEmpty() && left[stack.peek()][j] >= left[i][j]) {
+            for (int j = 0; j < h.length; j++) {
+                while (!stack.isEmpty() && h[j] < h[stack.peek()]){
+                    int curHeight = h[stack.pop()];
+                    while (!stack.isEmpty() && curHeight == h[stack.peek()]){
+                        stack.pop();
+                    }
+                    int curWidth;
+                    if (stack.isEmpty()){
+                        curWidth = j;
+                    }else {
+                        curWidth = j - stack.peek() - 1;
+                    }
+                    res = Math.max(res, curHeight * curWidth);
+                }
+                stack.push(j);
+
+            }
+
+            while (!stack.isEmpty()) {
+                int curHeight = h[stack.pop()];
+                while (!stack.isEmpty() && h[stack.peek()] == curHeight) {
                     stack.pop();
                 }
-                up[i] = stack.isEmpty() ? -1 : stack.peek();
-                stack.push(i);
-            }
-            stack.clear();
-            for (int i = m - 1; i >= 0; i--) {
-                while (!stack.isEmpty() && left[stack.peek()][j] >= left[i][j]) {
-                    stack.pop();
+                int curWidth;
+                if (stack.isEmpty()) {
+                    //最小元素的宽对应的是全部
+                    curWidth = h.length;
+                } else {
+                    curWidth = h.length - stack.peek() - 1;
                 }
-                down[i] = stack.isEmpty() ? m : stack.peek();
-                stack.push(i);
-            }
-
-            for (int i = 0; i < m; i++) {
-                int height = down[i] - up[i] - 1;
-                int area = height * left[i][j];
-                ret = Math.max(ret, area);
+                res = Math.max(res, curHeight * curWidth);
             }
         }
-        return ret;
+        return res;
+     }
 ~~~
 
 时间复杂度为O(M * N)，空间复杂度为O(M * N)
