@@ -87,6 +87,51 @@ public class SortTwo {
         return temp;
     }
 
+    private static void heapSort(int[] arr) {
+        //step1:构造堆
+        structureHeap(arr);
+        System.out.println("after structure heap: " + Arrays.toString(arr));
+        //step2:进行排序
+        for (int i = arr.length - 1; i > 0; i--) {
+            int t = arr[0];
+            arr[0] = arr[i];
+            arr[i] = t;
+            heapify(arr, 0, i);
+            System.out.println("i = " + i +  " " + Arrays.toString(arr));
+        }
+    }
+
+    private static void heapify(int[] arr, int i, int length) {
+        while (true){
+            int temp = i;
+            if ((i + 1) * 2 - 1 < length && arr[i] < arr[(i + 1) * 2 - 1]){
+                temp = (i + 1) * 2 - 1;
+            }
+            if ((i + 1) * 2 < length && arr[temp] < arr[(i + 1) * 2 ]){
+                temp = (i + 1) * 2;
+            }
+            if (temp == i){
+                return;
+            }
+            int t = arr[temp];
+            arr[temp] = arr[i];
+            arr[i] = t;
+            i = temp;
+        }
+    }
+
+    private static void structureHeap(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int k = i;
+            while (k > 0 && arr[k] > arr[(k - 1)/2]){
+                int t = arr[k];
+                arr[k] = arr[(k - 1)/2];
+                arr[(k - 1)/2] = t;
+                k = (k - 1)/2;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {13, 5, 7, 26, 33, 95, 50, 84, 23, 18,18};
         int[] clone = arr.clone();
@@ -97,6 +142,12 @@ public class SortTwo {
         quickSort(clone);
         System.out.println("after quick sort :" + Arrays.toString(clone));
 
+        clone = arr.clone();
+        heapSort(clone);
+        System.out.println("after heap sort :" + Arrays.toString(clone));
+
 
     }
+
+
 }
