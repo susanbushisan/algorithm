@@ -155,8 +155,8 @@ public class LRUCache<K, V> {
             return "";
         }
         StringBuilder r = new StringBuilder();
-        Node temp = head;
-        Set<Node> contain = new HashSet<>();
+        Node<K,V> temp = head;
+        Set<Node<K,V>> contain = new HashSet<>();
         while (temp != null) {
             if (contain.contains(temp)) {
                 r.append("->").append(" link after ").append(temp.k);
