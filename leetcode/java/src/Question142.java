@@ -24,7 +24,7 @@ public class Question142 {
     /**
      * 快慢指针，可以通过数据证明
      */
-    public ListNode detectCycle(ListNode head) {
+    public ListNode detectCycleI(ListNode head) {
         ListNode fast = head,slow = head;
         try {
             do{
@@ -58,5 +58,24 @@ public class Question142 {
         return null;
     }
 
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head,fast = head;
+        do {
+            if (fast == null || fast.next == null) {
+                return null;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        } while (slow != fast);
+        slow = head;
+        while (true){
+            if (slow == fast){
+                return slow;
+            }
+            slow = slow.next;
+            fast = fast.next;
+
+        }
+    }
 
 }

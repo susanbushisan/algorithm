@@ -12,12 +12,12 @@ public class Question17 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public List<String> letterCombinations(String digits) {
-        if (digits.length() == 0){
+    public List<String> letterCombinationsI(String digits) {
+        if (digits.length() == 0) {
             return new ArrayList<>();
         }
         String[] dict = {
-          "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
+                "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
         };
         int size = 1;
         char[] chars = digits.toCharArray();
@@ -41,20 +41,20 @@ public class Question17 {
     }
 
     public List<String> letterCombinationsBacktracking(String digits) {
-        if (digits.length() == 0){
+        if (digits.length() == 0) {
             return new ArrayList<>();
         }
         String[] dict = {
-                "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
+                "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
         };
         List<String> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        helper(digits,0,dict,sb,res);
+        helper(digits, 0, dict, sb, res);
         return res;
     }
 
-    private void helper(String digits,int index,String[] dict,StringBuilder sb,List<String> res){
-        if (index == digits.length()){
+    private void helper(String digits, int index, String[] dict, StringBuilder sb, List<String> res) {
+        if (index == digits.length()) {
             res.add(sb.toString());
             return;
         }
@@ -65,4 +65,31 @@ public class Question17 {
             sb.deleteCharAt(index);
         }
     }
+
+    public List<String> letterCombinations(String digits) {
+        if (digits.length() == 0) {
+            return new ArrayList<>();
+        }
+        String[] dict = {
+                "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+        };
+        int size = 1;
+        for (char c : digits.toCharArray()) {
+            size *= dict[c - '2'].length();
+        }
+        List<String> res = new ArrayList<>(size);
+        char[] index = new char[digits.length()];
+        for (int i = 0; i < size; i++) {
+            int c = i;
+            for (int j = 0; j < digits.length(); j++) {
+                String deal = dict[digits.charAt(j) - '2'];
+                char c1 = deal.charAt(c % deal.length());
+                index[j] = c1;
+                c = c / deal.length();
+            }
+            res.add(new String(index));
+        }
+        return res;
+    }
+
 }

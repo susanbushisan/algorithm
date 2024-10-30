@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,14 +9,14 @@ public class Question3 {
     public static void main(String[] args) {
         Question3 q = new Question3();
         long start = System.currentTimeMillis();
-        System.out.println(q.lengthOfLongestSubstring("pwwkew"));
+        System.out.println(q.lengthOfLongestSubstringI("pwwkew"));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
     /**
      * 官方解答，原理为滚动窗口
      */
-    public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstringI(String s) {
         int max = 0;
         boolean[] flag = new boolean[128];
         int right = -1;
@@ -41,14 +42,35 @@ public class Question3 {
             Set<Character> contain = new HashSet<>();
             for (int j = i; j < s.length(); j++) {
                 char c = s.charAt(j);
-                if (contain.contains(c)){
+                if (contain.contains(c)) {
                     break;
-                }else {
+                } else {
                     contain.add(c);
                 }
             }
-            res = Math.max(res,contain.size());
+            res = Math.max(res, contain.size());
         }
         return res;
     }
+
+    public int lengthOfLongestSubstring(String s) {
+        int max = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        int left = 0, right = 0;
+        char[] chars = s.toCharArray();
+        for (; right < s.length(); right++) {
+            if (map.containsKey(chars[right])) {
+                max = Math.max(max, right - left);
+                int index = map.get(chars[right]) + 1;
+                for (int i = left; i < index; i++) {
+                    map.remove(chars[i]);
+                }
+                left = index;
+            }
+            map.put(chars[right], right);
+        }
+        max = Math.max(max, right - left);
+        return max;
+    }
 }
+

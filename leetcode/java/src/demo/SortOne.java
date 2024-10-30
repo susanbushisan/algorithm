@@ -74,15 +74,70 @@ public class SortOne {
     public static void main(String[] args) {
         int[] arr = {13, 5, 7, 26, 33, 95, 50, 84, 23, 18};
         int[] clone = arr.clone();
-        bubbleSort(clone);
+        bubble(clone);
         System.out.println("after bubble sort :" + Arrays.toString(clone));
 
         clone = arr.clone();
-        insertionSort(clone);
+        insertion(clone);
         System.out.println("after insertion sort :" + Arrays.toString(clone));
 
         clone = arr.clone();
-        selectionSort(clone);
+        selection(clone);
         System.out.println("after selection sort :" + Arrays.toString(clone));
     }
+
+
+    private static void bubble(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            boolean flag = false;
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
+                    flag = true;
+                }
+            }
+            System.out.println("after times:" + i + Arrays.toString(arr));
+            if (!flag) {
+                break;
+            }
+        }
+    }
+
+    private static void insertion(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i];
+            int j;
+            for (j = i - 1; j >= 0; j--) {
+                if (arr[j] > temp) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    break;
+                }
+            }
+            arr[j + 1] = temp;
+            System.out.println("after times:" + i + Arrays.toString(arr));
+        }
+    }
+
+    private static void selection(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            swap(arr, i, minIndex);
+            System.out.println("after times:" + i + Arrays.toString(arr));
+        }
+    }
+
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
 }

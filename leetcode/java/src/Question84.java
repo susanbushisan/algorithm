@@ -15,7 +15,7 @@ public class Question84 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public int largestRectangleArea(int[] heights) {
+    public int largestRectangleAreaI(int[] heights) {
         int len = heights.length;
         if (len == 0) {
             return 0;
@@ -27,7 +27,7 @@ public class Question84 {
 
         int res = 0;
 
-        Deque<Integer> stack =new  ArrayDeque<>();
+        Deque<Integer> stack = new ArrayDeque<>();
 
         for (int i = 0; i < len; i++) {
             while (!stack.isEmpty() && heights[i] < heights[stack.peekLast()]) {
@@ -64,6 +64,26 @@ public class Question84 {
         }
 
         return res;
+    }
+
+
+    public int largestRectangleArea(int[] heights) {
+        int max = heights[0];
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < heights.length; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
+                Integer pop = stack.pop();
+                int area = heights[pop] * (i - 1 - (stack.peek() == null ? -1 : stack.peek()));
+                max = Math.max(max, area);
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) {
+            Integer pop = stack.pop();
+            int area = heights[pop] * (heights.length - 1 - (stack.peek() == null ? -1 : stack.peek()));
+            max = Math.max(max, area);
+        }
+        return max;
     }
 
 }

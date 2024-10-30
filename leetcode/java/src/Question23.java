@@ -33,11 +33,11 @@ public class Question23 {
         };
         start = System.currentTimeMillis();
         System.out.println("\n方法三：");
-        System.out.println(q.mergeKListsRight(listsT));
+        System.out.println(q.mergeKListsRightI(listsT));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    private ListNode mergeKListsRight(ListNode[] lists) {
+    private ListNode mergeKListsRightI(ListNode[] lists) {
         Queue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(v -> v.val));
         for (ListNode node: lists) {
             if (node != null) {
@@ -63,7 +63,7 @@ public class Question23 {
     /**
      * 将所有元素放在数组当中，然后排序，最后返回生成链表
      */
-    public ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeKListsI(ListNode[] lists) {
         List<Integer> list = new ArrayList<>();
         for (ListNode listNode : lists) {
             while (listNode != null){
@@ -118,5 +118,25 @@ public class Question23 {
             }
         }
         return root;
+    }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode d = new ListNode();
+        ListNode ln = d;
+        Queue<ListNode> priority = new PriorityQueue<>(Comparator.comparingInt(l -> l.val));
+        for (ListNode list : lists) {
+            if (list != null){
+                priority.add(list);
+            }
+        }
+        while (!priority.isEmpty()){
+            ListNode poll = priority.poll();
+            ln.next = poll;
+            ln = ln.next;
+            if (poll.next != null){
+                priority.add(poll.next);
+            }
+        }
+        return d.next;
     }
 }

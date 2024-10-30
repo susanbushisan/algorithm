@@ -15,7 +15,7 @@ public class Question11 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public int maxArea(int[] height) {
+    public int maxAreaI(int[] height) {
 
         int left = 0, right = height.length - 1;
         int max = Math.min(height[left], height[right]) * (height.length - 1);
@@ -29,5 +29,19 @@ public class Question11 {
             max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
         }
         return max;
+    }
+
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        int left = 0, right = height.length - 1;
+        while (left < right) {
+            maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return maxArea;
     }
 }

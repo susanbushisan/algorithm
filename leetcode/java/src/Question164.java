@@ -9,7 +9,19 @@ public class Question164 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
+
     public int maximumGap(int[] nums) {
+        if (nums.length < 2){
+            return 0;
+        }
+        for (int i = 10; i > 0; i--) {
+
+        }
+        return 0;
+
+    }
+
+    public int maximumGapI(int[] nums) {
         if (nums.length < 2){
             return 0;
         }
@@ -19,34 +31,6 @@ public class Question164 {
             max = Math.max(max, nums[i + 1] - nums[i]);
         }
         return max;
-    }
-
-    /**
-     * 计数排序的变种，用一个标记表示在此处有没有数字
-     */
-    public int maximumGapCount(int[] nums) {
-        if (nums.length < 2){
-            return 0;
-        }
-        int min = nums[0],max = nums[0];
-        for (int num : nums) {
-            max = Math.max(max, num);
-            min = Math.min(min, num);
-        }
-        boolean[] counter = new boolean[max -min + 1];
-        for (int num : nums) {
-            counter[num - min] = true;
-        }
-        int ans = 0,pre = -1;
-        for (int i = 0; i < counter.length; i++) {
-            if (counter[i]){
-                if (pre != -1){
-                    ans = Math.max(ans,i - pre);
-                }
-                pre = i;
-            }
-        }
-        return ans;
     }
 
     public int maximumGaBucket(int[] nums) {

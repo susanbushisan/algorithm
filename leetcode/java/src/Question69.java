@@ -10,20 +10,39 @@ public class Question69 {
         Question69 q = new Question69();
 
         long start = System.currentTimeMillis();
-        System.out.println(q.mySqrt(2147395599));
+        System.out.println(q.mySqrt(1));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public int mySqrt(int x) {
-        int high = x,low = 0;
-        while (low <= high){
+    public int mySqrtI(int x) {
+        int high = x, low = 0;
+        while (low <= high) {
             int mid = low + ((high - low) >> 1);
-            if ((long)mid * mid <= x ){
+            if ((long) mid * mid <= x) {
                 low = mid + 1;
-            }else {
+            } else {
                 high = mid - 1;
             }
         }
         return low + ((high - low) >> 1);
+    }
+
+
+    public int mySqrt(int x) {
+        int high = x, low = 0;
+        int res = 0;
+        while (high >= low) {
+            int mid = low + ((high - low) >> 1);
+            long h = (long) mid * mid;
+            if (h == x) {
+                return mid;
+            } else if (h > x) {
+                high = mid - 1;
+            } else {
+                res = mid;
+                low = mid + 1;
+            }
+        }
+        return res;
     }
 }

@@ -21,7 +21,7 @@ public class Question102 {
 
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderI(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null){
             return ans;
@@ -45,6 +45,31 @@ public class Question102 {
             ans.add(current);
         }
         return ans;
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null){
+            return res;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode pop = queue.poll();
+                level.add(pop.val);
+                if (pop.left != null){
+                    queue.add(pop.left);
+                }
+                if (pop.right != null){
+                    queue.add(pop.right);
+                }
+            }
+            res.add(level);
+        }
+        return res;
     }
 }
 

@@ -7,11 +7,11 @@ import java.util.*;
 public class Question15 {
     public static void main(String[] args) {
         Question15 q = new Question15();
-        int[] nums = new int[]{0,0,0};
+        int[] nums = new int[]{-1, 0, 1,-1};
         System.out.println(q.threeSum(nums));
     }
 
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSumI(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
         int i = 0;
@@ -42,6 +42,41 @@ public class Question15 {
             } while (i < nums.length - 2 && nums[i] == nums[i - 1]);
         }
 
+        return res;
+    }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        int i = 0;
+        while (i < nums.length - 2) {
+            int target = -nums[i];
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                int c = nums[left] + nums[right];
+                if (c == target) {
+                    res.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    do {
+                        left++;
+                    } while (left < nums.length - 1 && nums[left] == nums[left - 1]);
+                    do {
+                        right--;
+                    } while (right >= i && nums[right] == nums[right + 1]);
+                } else if (c < target) {
+                    do {
+                        left++;
+                    } while (left < nums.length - 1 && nums[left] == nums[left - 1]);
+                } else {
+                    do {
+                        right--;
+                    } while (right >= i && nums[right] == nums[right + 1]);
+                }
+            }
+            do {
+                i++;
+            } while (i < nums.length - 2 && nums[i] == nums[i - 1]);
+        }
         return res;
     }
 }

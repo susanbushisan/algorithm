@@ -19,7 +19,7 @@ public class Question85 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public int maximalRectangle(char[][] matrix) {
+    public int maximalRectangleI(char[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return 0;
         }
@@ -73,15 +73,15 @@ public class Question85 {
             Deque<Integer> stack = new ArrayDeque<>();
 
             for (int j = 0; j < h.length; j++) {
-                while (!stack.isEmpty() && h[j] < h[stack.peek()]){
+                while (!stack.isEmpty() && h[j] < h[stack.peek()]) {
                     int curHeight = h[stack.pop()];
-                    while (!stack.isEmpty() && curHeight == h[stack.peek()]){
+                    while (!stack.isEmpty() && curHeight == h[stack.peek()]) {
                         stack.pop();
                     }
                     int curWidth;
-                    if (stack.isEmpty()){
+                    if (stack.isEmpty()) {
                         curWidth = j;
-                    }else {
+                    } else {
                         curWidth = j - stack.peek() - 1;
                     }
                     res = Math.max(res, curHeight * curWidth);
@@ -108,5 +108,39 @@ public class Question85 {
         return res;
     }
 
+    public int maximalRectangle(char[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+
+        int[][] help = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == 0) {
+                    help[i][j] = matrix[i][j] == '0' ? 0 : 1;
+                } else {
+                    help[i][j] = matrix[i][j] == '1' ? help[i - 1][j] + 1 : 0;
+                }
+            }
+        }
+        int max = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int[] ints : help) {
+            for (int i = 0; i < ints.length; i++) {
+                while (!stack.isEmpty() && ints[stack.peek()] > ints[i]) {
+                    int pop = stack.pop();
+                    int area = ints[pop] * (i - 1 - (stack.peek() == null ? -1 : stack.peek()));
+                    max = Math.max(max, area);
+                }
+                stack.push(i);
+            }
+            while (!stack.isEmpty()) {
+                int pop = stack.pop();
+                int area = ints[pop] * (ints.length - 1 - (stack.peek() == null ? -1 : stack.peek()));
+                max = Math.max(max, area);
+            }
+        }
+        return max;
+    }
 
 }

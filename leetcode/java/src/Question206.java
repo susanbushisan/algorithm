@@ -10,7 +10,7 @@ public class Question206 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseListI(ListNode head) {
         ListNode d = null;
         while (head!=null){
             ListNode temp = head;
@@ -29,6 +29,16 @@ public class Question206 {
         head.next.next = head;
         head.next = null;
         return p;
+    }
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null){
+            return head;
+        }
+        ListNode listNode = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return listNode;
     }
 
 

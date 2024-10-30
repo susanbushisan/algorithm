@@ -15,14 +15,14 @@ public class Question169 {
                 2,3,2,4
         };
         long start = System.currentTimeMillis();
-        System.out.println(q.majorityElementVote(height));
+        System.out.println(q.majorityElement(height));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
     /**
      * 统计出现的次数，然后返回次数最多的
      */
-    public int majorityElement(int[] nums) {
+    public int majorityElementI(int[] nums) {
         Map<Integer,Integer> counter = new HashMap<>();
         for (int num : nums) {
             counter.merge(num,1, Integer::sum);
@@ -58,5 +58,47 @@ public class Question169 {
             }
         }
         return voter;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int majorityElement(int[] nums) {
+        int vote = nums[0];
+        int ticket = 0;
+        for (int num : nums) {
+            if (vote == num){
+                ticket ++;
+            }else {
+                if (ticket == 0){
+                    vote = num;
+                    ticket = 1;
+                }else {
+                    ticket --;
+                }
+            }
+        }
+        return vote;
     }
 }

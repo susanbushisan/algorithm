@@ -13,7 +13,7 @@ public class Question39 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public List<List<Integer>> combinationSumI(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         LinkedList<Integer> stack = new LinkedList<>();
         helper(candidates, target, stack, ans);
@@ -30,6 +30,25 @@ public class Question39 {
                 int[] arr = new int[candidates.length - i];
                 System.arraycopy(candidates, i, arr, 0, arr.length);
                 helper(arr, target - candidate, stack, ans);
+            }
+            stack.pop();
+        }
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        help(candidates, target, 0, new LinkedList<>(), ans);
+        return ans;
+    }
+
+    private void help(int[] candidates, int target, int candidateIndex, LinkedList<Integer> stack, List<List<Integer>> res) {
+        for (int i = candidateIndex; i < candidates.length; i++) {
+            int candidate = candidates[i];
+            stack.push(candidate);
+            if (candidate == target) {
+                res.add(new ArrayList<>(stack));
+            } else if (candidate < target) {
+                help(candidates, target - candidate, i, stack, res);
             }
             stack.pop();
         }

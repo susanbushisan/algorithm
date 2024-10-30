@@ -17,23 +17,46 @@ public class Question139 {
         wordDict.add("aaaaaaaaaa");
 
         long start = System.currentTimeMillis();
-        System.out.println(q.wordBreak(s,wordDict));
+        System.out.println(q.wordBreak(s, wordDict));
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
     Set<String> set = new HashSet<>();
-    public boolean wordBreak(String s, List<String> wordDict) {
-        if (wordDict.contains(s)){
+
+    public boolean wordBreakI(String s, List<String> wordDict) {
+        if (wordDict.contains(s)) {
             return true;
         }
-        if(set.contains(s))
+        if (set.contains(s))
             return false;
         for (String word : wordDict) {
-            if (s.startsWith(word) && wordBreak(s.substring(word.length()),wordDict)){
+            if (s.startsWith(word) && wordBreakI(s.substring(word.length()), wordDict)) {
                 return true;
             }
         }
         set.add(s);
+        return false;
+    }
+
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+        return wordBreak(s, wordDict, 0, new HashSet<>());
+    }
+
+    private boolean wordBreak(String s, List<String> wordDict, int index, Set<String> notExist) {
+        if (index == s.length()) {
+            return true;
+        }
+        String c = s.substring(index);
+        if (notExist.contains(c)){
+            return false;
+        }
+        for (String word : wordDict) {
+            if (c.startsWith(word) && wordBreak(s, wordDict, index + word.length(), notExist)) {
+                return true;
+            }
+        }
+        notExist.add(c);
         return false;
     }
 

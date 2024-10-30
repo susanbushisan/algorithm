@@ -19,32 +19,35 @@ public class Question155 {
         System.out.println(System.currentTimeMillis() - start + "ms");
     }
 
-     static class MinStack {
+    static class MinStack {
 
         Deque<Integer> stack;
+
         Deque<Integer> assist;
-        /** initialize your data structure here. */
+
         public MinStack() {
             stack = new ArrayDeque<>();
             assist = new ArrayDeque<>();
         }
-        public void push(int x) {
-            stack.push(x);
-            if (assist.isEmpty()){
-                assist.push(x);
-            }else if (x > assist.peek()){
+
+        public void push(int val) {
+            stack.push(val);
+            if (assist.isEmpty() || assist.peek() > val) {
+                assist.push(val);
+            } else {
                 assist.push(assist.peek());
-            }else {
-                assist.push(x);
             }
         }
+
         public void pop() {
             stack.pop();
             assist.pop();
         }
+
         public int top() {
             return stack.peek();
         }
+
         public int getMin() {
             return assist.peek();
         }

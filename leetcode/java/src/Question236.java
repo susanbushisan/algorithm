@@ -16,7 +16,7 @@ public class Question236 {
 
     TreeNode ans = null;
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestorI(TreeNode root, TreeNode p, TreeNode q) {
         dfs(root, p, q);
         return ans;
     }
@@ -65,5 +65,17 @@ public class Question236 {
         }
         return null;
     }
+
+
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if(left == null) return right;
+        if(right == null) return left;
+        return root;
+    }
+
 
 }

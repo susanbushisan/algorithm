@@ -78,7 +78,7 @@ public class SortThree {
         int[] clone = arr.clone();
 
         bucketSort(clone);
-        System.out.println("after bubble sort :" + Arrays.toString(clone));
+        System.out.println("after bucket sort :" + Arrays.toString(clone));
 
         clone = arr.clone();
         countingSort(clone);
@@ -88,4 +88,6 @@ public class SortThree {
         radixSort(clone);
         System.out.println("after radix sort :" + Arrays.toString(clone));
     }
+
+
 }
